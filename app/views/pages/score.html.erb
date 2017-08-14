@@ -1,0 +1,18 @@
+<p>Now your result !</p>
+
+<div class="results text-center">
+  <div class="results-content">
+    <ul>
+      <li>Your word: <%= @answer %><li>
+      <li>Time Taken to answer: <%= @result_time %></li>
+      <li>Your score: <%= @result_score %></li>
+      <li>Message: <%= @result_message %> </li>
+    </ul>
+  </div>
+</div>
+
+<%= link_to game_path do %>
+  <div class="btn btn-primary score-btn">
+    Play again !
+  </div>
+<% end %>

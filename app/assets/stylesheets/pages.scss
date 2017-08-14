@@ -1,0 +1,49 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// General CSS
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+}
+
+p {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 28px;
+  color: rgb(50,78,123);
+}
+// Game CSS
+.grid {
+  display: flex;
+  justify-content: center;
+}
+.grid-content {
+  border: 3px solid rgb(50,78,123);
+  padding: 20px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+#grid-letters {
+  color: rgb(71,98,104);
+  margin-bottom: 0;
+}
+// Score CSS
+ul {
+  list-style-type: none;
+}
+li {
+  font-size: 18px;
+}
+.results {
+  display: flex;
+  justify-content: center;
+}
+.results-content {
+  border: 3px solid rgb(50,78,123);
+  padding: 20px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+.score-btn {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,20 @@
+<p>Welcome to the longest word-game!</p>
+<p>Here is your grid:</p>
+<div class="grid text-center">
+  <div class="grid-content">
+    <p id="grid-letters">
+      <%= @grid %>
+    </p>
+  </div>
+</div>
+<form action="/score">
+  <div class="form-group">
+    <label for="question">What's your best shot?</label>
+    <input type="text" id="question" name="user_shot" placeholder="type a word here">
+    <input type="submit" value="Go on!" class="btn btn-primary">
+    <input type="hidden" name="grid" value="<%= @grid %>">
+    <input type="hidden" name="start_time" value="<%= @start_time %>">
+  </div>
+</form>
+<!-- <%=  %> the = changes it into HTML -->
+<!-- The btn will lead to score page -->
