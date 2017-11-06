@@ -16,28 +16,38 @@ class PagesController < ApplicationController
 
   # raise shows an error & brings a console
   def score
-    # 1. Get start time from /game page
+    # 1. Get start time from /game page (hidden input)
     @start_time = Time.parse(params[:start_time])
     # 2. Get end time from /score page
     @end_time = Time.now
     # 3. Get user's answer from form (input's name)
     @answer = params[:user_shot]
+    # 4. Get the grid from form /game page (hidden input)
     @grid = params[:grid]
+    # 5. Empty hash to store the result (time taken, score, is it an english word)
     result = {}
+    # 6. Conditional - 3 differents cases
+    # Case 1: If the word is an English word
     if english_word?(@answer)
+      # Case 2: AND If the word matches letters in grid
       if matches?(@answer.upcase, @grid)
         result[:message] = "Well done"
         # score = length / time
         result[:score] = ((@answer.length / total_time(@start_time, @end_time)) * 1000).to_i
       else
+        # Case 2-b: Does not match the grid
         result[:message] = "Not in the grid"
         result[:score] = 0
       end
+      # Case 3: If the word is not an English word
+      # (don't need to calculate a score)
     else
       result[:score] = 0
       result[:message] = "not an english word"
     end
+    # 7. Call the method to calculate time taken
     result[:time] = total_time(@start_time, @end_time)
+    # 8. Assign time, score, and message to var to display on the /score page
     @result_time = result[:time]
     @result_score = result[:score]
     @result_message = result[:message]

@@ -2,9 +2,11 @@
 <p>Here is your grid:</p>
 <div class="grid text-center">
   <div class="grid-content">
-    <p id="grid-letters">
-      <%= @grid %>
-    </p>
+    <ul class="grid-letters list-inline">
+      <% @grid.split(' ').each do |letter| %>
+        <li><%= letter %></li>
+      <% end %>
+    </ul>
   </div>
 </div>
 <form action="/score">
