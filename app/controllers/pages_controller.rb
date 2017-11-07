@@ -1,11 +1,11 @@
 require 'open-uri'
 require 'json'
 
-# We can call a method an Time.now
+# We can call a method and Time.now
 # Time is an object
 
 class PagesController < ApplicationController
-  # public methods associated to a route
+  # PUBLIC METHODS associated to a route
   def game
     # 1. Generate a grid of 9 random letters
     # 2. Join the result array
@@ -17,6 +17,9 @@ class PagesController < ApplicationController
   # raise shows an error & brings a console
   def score
     # 1. Get start time from /game page (hidden input)
+    # Time.parse takes a time/date string "2012-04-02 13:15:09"
+    # and change it into a Time object (try .class)
+    # --> this allows to use the object as an integer to be part of calculations
     @start_time = Time.parse(params[:start_time])
     # 2. Get end time from /score page
     @end_time = Time.now
@@ -47,11 +50,11 @@ class PagesController < ApplicationController
     end
     # 7. Call the method to calculate time taken
     result[:time] = total_time(@start_time, @end_time)
-    # 8. Assign time, score, and message to var to display on the /score page
+    # 8. Assign time, score, and message to @var to display on the /score page
     @result_time = result[:time]
     @result_score = result[:score]
     @result_message = result[:message]
-    return result # {time: 1.5, score: 10, messqge: "well done"}
+    return result # {time: 1.5, score: 10, message: "well done"}
   end
 
   private
@@ -72,7 +75,6 @@ class PagesController < ApplicationController
     attempt.chars.all? { |letter| attempt.count(letter) <= grid.count(letter) }
   end
 
-  # check attempt is a real word : english_word? (API)
   def english_word?(word)
     # TODO: use API to check that an attempt is a real word
     # 1. Interpolate user's word in the url path
@@ -81,7 +83,7 @@ class PagesController < ApplicationController
     serialized_word = open(url).read
     # 3. parse JSON
     word = JSON.parse(serialized_word)
-    # 4. Boolean (when you open the url, 1st key is :found : true/false)
+    # 4. Boolean (when you open the url, 1st key is "found" : true/false)
     return word["found"]
   end
 
